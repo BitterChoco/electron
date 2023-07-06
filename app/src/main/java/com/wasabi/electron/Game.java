@@ -11,9 +11,14 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+/**
+ * Game manages all objects in the game and is responsible for updating all states and render all
+ * objects to the screen
+ */
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final Joystick joystick;
     private final Player player;
+    private final Enemy enemy;
     private GameLoop gameLoop;
 
     public Game(Context context) {
@@ -28,7 +33,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         // Initialize game objects
         joystick = new Joystick(275, 700, 70, 40);
-        player = new Player(getContext(), 2 * 500, 500, 30);
+        player = new Player(getContext(), joystick, 2 * 500, 500, 30);
+        enemy = new Enemy();
 
         setFocusable(true);
     }
@@ -103,6 +109,6 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         // Update game state
         joystick.update();
-        player.update(joystick);
+        player.update();
     }
 }
