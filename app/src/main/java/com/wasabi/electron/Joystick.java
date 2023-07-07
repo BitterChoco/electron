@@ -106,6 +106,7 @@ public class Joystick {
     public double getActuatorX() {
         return actuatorX;
     }
+
     public double getActuatorY() {
         return actuatorY;
     }
